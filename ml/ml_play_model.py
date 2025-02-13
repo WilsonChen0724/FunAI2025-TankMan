@@ -17,7 +17,7 @@ DEGREES_PER_SEGMENT = 45 # degree
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))  # 上層資料夾
 MODEL_DIR = os.path.join(BASE_DIR, "model")
-MODEL_AIM_PATH = os.path.join(MODEL_DIR, "best_model(1).zip")
+MODEL_AIM_PATH = os.path.join(MODEL_DIR, "best_model_aim.zip")
 MODEL_CHASE_PATH = os.path.join(MODEL_DIR, "best_model_chase.zip")
 
 COMMAND_AIM = [
