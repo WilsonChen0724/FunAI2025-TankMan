@@ -11,16 +11,15 @@ The trained models and the history are stored in the `log` folder.
 We pick the best models (one of chase: `best_model_chase.py` and one of aim: `best_model_aim.py`) in the `model` folder to play the game.  
 Some training parameters can be adjusted in `train.py`.  
 The task is to design reward functions for the aim model and chase model and try to train the best model of each of them.  
-Then, in ``ml_play_model.py`, try to write the rules of using models, switching models, etc. Just try to make the tank as impeccable as we can.  
-In the process of training the models, we find flaws of the polar coordinate system and the inconsistencies about calculating  
-angles between the training codes and `ml_play_model.py`. We modified them so that there is no such kind of situations that the tank aims and shoots at the wrong angle  
-but is assertive that it is shooting in the correct angle.    
+Then, in `ml_play_model.py`, try to write the rules of using models, switching models, etc. Just try to make the tank as impeccable as we can.    
+
+In the process of training the models, we find **flaws of the polar coordinate system and the inconsistencies about calculating angles between the training codes and `ml_play_model.py`**. We modified them so that there is no such kind of situations that the tank aims and shoots at the wrong angle but is assertive that it is shooting in the correct angle.    
 
 The best models my only teammate and I had trained can chase its nearest enemies and aimed them at the correct direction and shoot the bullets.  
 In addition, it will try to pick up the bullets and supply fuels when either of them are out of stock.  
 However, we didn't perfectly solved the problem that sometimes it will get stucked by the wall and the aiming system can still be improved by more comprehensive rules.    
 
-Other information such as the mechanics of the game and how to execute the files are mainly described in **the second link above**. Below are the information of the original project on github.
+Other information such as the mechanics of the game and how to execute the files are primarily described in **the second link above**. Below are the information of the original project on github.
 At last, wish you a happy ML experience. ^_^
 
 # README of the root github repository
