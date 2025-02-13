@@ -1,112 +1,29 @@
 # TankMan
-# Racing Car
 
-**This project is related to the homework assigned by Fun AI 2025 camp. See the original repository for latest and further details.** 
-- **[Racing car link](https://github.com/PAIA-Playful-AI-Arena/racing_car)**
-- **version of this project：** 4.0.1
-
-## Set up virtual environment(recommended) (Applicable to Racing_car version 4.0.1)
-### Windows
-```python
-# 新建 MLGame 資料夾, 所有遊戲可以放在這裡 (Ex. Arkanoid)
-mkdir MLGame 
-cd MLGame
-
-# 建立虛擬環境
-python -m venv funai
-# 進入虛擬環境(在MLGame中執行)
-.\funai\Scripts\activate.bat
-
-# 安裝需要的套件 (請一定要從上到下逐行執行)
-pip install mlgame
-pip install gymnasium
-pip install scikit-learn
-pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu118 # 安裝 pytorch (eg. cuda 11.8)
-pip install stable-baselines3
-pip install numpy==1.26.4
-```
-### Mac
-```python
-# 新建 MLGame 資料夾, 所有遊戲可以放在這裡 (Ex. Arkanoid)
-mkdir MLGame 
-cd MLGame
-
-# 建立虛擬環境
-python3 -m venv funai
-# 進入虛擬環境
-source funai/bin/activate
-
-# 安裝需要的套件 (請一定要從上到下逐行執行)
-pip install mlgame
-pip install gymnasium
-pip install scikit-learn
-pip install torch torchvision torchaudio
-pip install stable-baselines3
-pip install numpy==1.26.4
-```
-
-### Linux
-```python
-# 新建 MLGame 資料夾, 所有遊戲可以放在這裡 (Ex. Arkanoid)
-mkdir MLGame 
-cd MLGame
-
-# 安裝對應的 python 虛擬環境
-sudo apt install python3.10-venv
-# 進入虛擬環境
-python3.10 -m venv funai 
-# 進入虛擬環境
-source funai/bin/activate 
-
-# 安裝需要的套件 (請一定要從上到下逐行執行)
-pip install mlgame
-pip install gym
-pip install scikit-learn
-pip install torch torchvision torchaudio
-pip install stable-baselines3
-pip install numpy==1.26.4
-```
-
-## Game commands
-
-**Open the cmd/powershell/Terminal in the arkanoid folder and execute the lines below regarding your needs.**
-
-  - **玩遊戲指令** 
-  ```python
-    python -m mlgame -f 120 -i ml/ml_play_template.py ./ --game_type NORMAL --car_num 40 --racetrack_length 10000  --round 5 --sound off
-  ```
-  - **手動玩遊戲指令** 
-  ```python
-    python -m mlgame -f 120 -i ml/ml_play_manual.py ./ --game_type NORMAL --car_num 40 --racetrack_length 10000  --round 5 --sound off
-  ```
-  - **訓練遊戲指令+不顯示畫面(--nd)** 
-  ```python
-    python -m mlgame -f 120 --nd -i ml/rl_training_PPO.py ./ --game_type NORMAL --car_num 40 --racetrack_length 10000  --round 5 --sound off
-  ```
-  - **訓練遊戲指令** 
-  ```python
-    python -m mlgame -f 120 -i ml/rl_training_PPO.py ./ --game_type NORMAL --car_num 40 --racetrack_length 10000  --round 5 --sound off 
-  ```
-  - **訓練後玩遊戲指令** 
-  ```python
-    python -m mlgame -f 120 -i ml/rl_play_PPO.py ./ --game_type NORMAL --car_num 40 --racetrack_length 10000  --round 5 --sound off
-  ```
+**This project is related to the main project assigned by Fun AI 2025 camp. See the original repository for latest and further details.** 
+- **[TankMan on Github](https://github.com/PAIA-Playful-AI-Arena/racing_car)**
+- **[Instructions to deploy the environment and also more descriptions]([https://github.com/PAIA-Playful-AI-Arena/racing_car](https://hackmd.io/@18pxFb46TIOf3SL3_Xliag/2025_funai_tankman))**
 
 ## About what we do and ML
 
-The training model used is a PPO model. The details are in `/rl_training_PPO.py`.  
-The model and log is stored in the `save` folder.
-The homework is to design a reward function that can pass the racetrack of 10000 units, which is in `environment.py`.  
-Furthermore, the car knows how and when to switch lane and execute it accurately.
-The default training frequency is to train every 200 rounds. You can adjust it in `/rl_training_PPO.py` line 59.  
-Parameters about the game can be adjusted in `game_config.json`    
+The training model used is a PPO model. However, there is also QTable available in `QT.py`.    
+The trained models and the history are stored in the `log` folder.  
+We pick the best models (one of chase: `best_model_chase.py` and one of aim: `best_model_aim.py`) in the `model` folder to play the game.  
+Some training parameters can be adjusted in `train.py`.  
+The task is to design reward functions for the aim model and chase model and try to train the best model of each of them.  
+Then, in ``ml_play_model.py`, try to write the rules of using models, switching models, etc. Just try to make the tank as impeccable as we can.  
+In the process of training the models, we find flaws of the polar coordinate system and the inconsistencies about calculating  
+angles between the training codes and `ml_play_model.py`. We modified them so that there is no such kind of situations that the tank aims and shoots at the wrong angle  
+but is assertive that it is shooting in the correct angle.    
 
-The model I've trained can control the car to the finish line of the racetrack of 10000 units with over 50% probability.    
+The best models my only teammate and I had trained can chase its nearest enemies and aimed them at the correct direction and shoot the bullets.  
+In addition, it will try to pick up the bullets and supply fuels when either of them are out of stock.  
+However, we didn't perfectly solved the problem that sometimes it will get stucked by the wall and the aiming system can still be improved by more comprehensive rules.    
 
-Other information such as the mechanics of the game are described in the README of the original source. Below are the information of the 4.0.1 version.
+Other information such as the mechanics of the game and how to execute the files are mainly described in **the second link above**. Below are the information of the original project on github.
 At last, wish you a happy ML experience. ^_^
 
-# README of the root repository(version: 4.0.1)
+# README of the root github repository
 ## 遊戲說明
 <img src="https://raw.githubusercontent.com/Jesse-Jumbo/TankMan/49dc8cb825ddd8dea61936fb6d339c846fe68d6c/asset/image/TankMan.svg" alt="logo" width="100"/> 
 
